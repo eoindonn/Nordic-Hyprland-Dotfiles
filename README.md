@@ -1,0 +1,8 @@
+# HYPRLAND ENVIRONENT CONFIG FILES
+
+## PREREQUISITES
+* All packages for each file must be installed
+* Edit the default applications in the hyprland config files to your preference
+
+## INFORMATION
+* Create for arch linux on a thinkpad t480 :)
