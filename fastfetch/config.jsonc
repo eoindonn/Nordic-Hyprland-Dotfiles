@@ -11,7 +11,7 @@
             "right": 3
         },
         "color": {
-            "1": "#22d3ee"
+            "1": "#88C0D0"
         }
     },
     "modules": [
@@ -23,32 +23,32 @@
         {
             "type": "host",
             "key": " PC",
-            "keyColor": "#22d3ee"
+            "keyColor": "#88C0D0"
         },
         {
             "type": "cpu",
             "key": "│ ├ CPU",
-            "keyColor": "#22d3ee"
+            "keyColor": "#88C0D0"
         },
         {
             "type": "gpu",
             "key": "│ ├󰍛 GPU",
-            "keyColor": "#22d3ee"
+            "keyColor": "#88C0D0"
         },
         {
             "type": "memory",
             "key": "│ ├󰍛 RAM",
-            "keyColor": "#22d3ee"
+            "keyColor": "#88C0D0"
         },
         {
             "type": "disk",
             "key": "│ ├ Disk",
-            "keyColor": "#22d3ee"
+            "keyColor": "#88C0D0"
         },
         {
             "type": "battery",
             "key": "│ ├ BATT",
-            "keyColor": "#22d3ee"
+            "keyColor": "#88C0D0"
         },
         {
             "type": "custom",
@@ -64,27 +64,27 @@
         {
             "type": "os",
             "key": " OS",
-            "keyColor": "#84cc16"
+            "keyColor": "#A3BE8C"
         },
         {
             "type": "kernel",
             "key": "│ ├ Kernel",
-            "keyColor": "#84cc16"
+            "keyColor": "#A3BE8C"
         },
         {
             "type": "bios",
             "key": "│ ├ BIOS",
-            "keyColor": "#84cc16"
+            "keyColor": "#A3BE8C"
         },
         {
             "type": "packages",
             "key": "│ ├󰏖 Packages",
-            "keyColor": "#84cc16"
+            "keyColor": "#A3BE8C"
         },
         {
             "type": "shell",
             "key": "│ ├ Shell",
-            "keyColor": "#84cc16"
+            "keyColor": "#A3BE8C"
         },
         {
             "type": "custom",
@@ -100,12 +100,12 @@
         {
             "type": "uptime",
             "key": "│ Wake Time",
-            "keyColor": "#c084fc"
+            "keyColor": "#B48EAD"
         },
         {
             "type": "datetime",
             "key": "│ Date/Time",
-            "keyColor": "#c084fc"
+            "keyColor": "#B48EAD"
         },
         {
             "type": "custom",
