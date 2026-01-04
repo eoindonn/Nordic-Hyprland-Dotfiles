@@ -1,0 +1,36 @@
+/*
+*
+* Nord color palette (CSS variables)
+* Converted from @define-color
+*
+*/
+
+:root {
+  /* Backgrounds */
+  --bg          : #2E3440;
+  --bg-alt      : #3B4252;
+  --surface0    : #434C5E;
+  --surface1    : #4C566A;
+
+  /* Foregrounds / Text */
+  --fg          : #ECEFF4;
+  --fg-alt      : #E5E9F0;
+  --subtext0    : #D8DEE9;
+  --subtext1    : #8FBCBB;
+  --important   : #58C7E9;
+
+  /* Accent Colors */
+  --red         : #BF616A;
+  --orange      : #D08770;
+  --yellow      : #EBCB8B;
+  --green       : #A3BE8C;
+  --teal        : #88C0D0;
+  --blue        : #81A1C1;
+  --purple      : #B48EAD;
+  --pink        : #B48EAD;
+
+  /* Overlays / Highlights */
+  --overlay0    : #5E81AC;
+  --overlay1    : #4C566A;
+  --overlay2    : #434C5E;
+}

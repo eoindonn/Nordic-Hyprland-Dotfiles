@@ -1,0 +1,28 @@
+/* Backgrounds */
+@define-color bg          #2E3440;
+@define-color bg-alt      #3B4252;
+@define-color surface0    #434C5E;
+@define-color surface1    #4C566A;
+
+/* Foregrounds / Text */
+@define-color fg          #ECEFF4;
+@define-color fg-alt      #E5E9F0;
+@define-color subtext0    #D8DEE9;
+@define-color subtext1    #8FBCBB;
+@define-color important   #58C7E9;
+
+/* Accent Colors */
+@define-color red         #BF616A;
+@define-color orange      #D08770;
+@define-color yellow      #EBCB8B;
+@define-color green       #A3BE8C;
+@define-color teal        #88C0D0;
+@define-color blue        #81A1C1;
+@define-color purple      #B48EAD;
+@define-color pink        #B48EAD;
+@define-color nicegreen   #a6da95;
+
+/* Overlays / Highlights */
+@define-color overlay0    #5E81AC;
+@define-color overlay1    #4C566A;
+@define-color overlay2    #434C5E;

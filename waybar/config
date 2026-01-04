@@ -7,7 +7,7 @@
     "margin-top": 5,
     "modules-left": ["hyprland/window","custom/spotify", "custom/youtube"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "custom/wallpaper", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time","custom/wlogout"],
+    "modules-right": ["tray", "custom/wallpaper", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time", "custom/notifications", "custom/wlogout"],
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -92,7 +92,22 @@
         "on-click": "departure",
         "interval" : 86400, // once every day
         "tooltip": true
-    }
+    },
+
+    "custom/notifications": {
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󰂚",
+      "none": "󰂜",
+      "dnd-notification": "󰂛",
+      "dnd-none": "󰂜"
+    },
+    "return-type": "json",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t",
+    "on-click-right": "swaync-client -d",
+    "tooltip": true
+  }
 },
 
 
@@ -105,7 +120,7 @@
     "margin-bottom": 5,
     "modules-left": ["network", "backlight"],
     "modules-center": [],
-    "modules-right": ["battery#internal", "battery#external","temperature#cpu", "cpu", "memory", "power-profiles-daemon"],
+    "modules-right": ["battery#internal", "battery#external","temperature#cpu", "cpu", "memory"],
 
     "backlight": {
 	"format": " {percent}%"
