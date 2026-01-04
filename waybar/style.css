@@ -1,7 +1,6 @@
-@import "macchiato.css";
+@import "colours.css";
 
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: "FiraCode Nerd Font";
     font-size: 13px;
 }
@@ -28,15 +27,6 @@ window#waybar.solo {
     font-weight: bold;
 }
 
-/*window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}*/
-
 button {
     /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
@@ -45,13 +35,14 @@ button {
     border-radius: 0;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: @surface0;
 }
+
 #workspaces {
     padding: 0 5px;
 }
+
 #workspaces button {
   box-shadow: none;
   text-shadow: none;
@@ -107,11 +98,9 @@ button:hover {
 #pulseaudio,
 #wireplumber,
 #custom-media,
-#mode,
-#idle_inhibitor,
-#scratchpad,
-#custom-spotify
-#custom-wlogout
+#custom-spotify,
+#custom-wlogout,
+#custom-wallpaper
 
 #window {
     padding: 0 12;
@@ -139,6 +128,15 @@ button:hover {
     color: @text;
     background-color: @mantle;
     padding: 0 4;
+}
+
+#custom-wallpaper {
+    padding: 0 6px;
+}
+
+#custom-wallpaper:hover {
+    background-color: #2285ac;
+    border-radius: 4px;
 }
 
 #workspaces {
@@ -275,62 +273,3 @@ label:focus {
     -gtk-icon-effect: highlight;
     background-color: #ed8796;
 }
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
-#language {
-    background: #00b093;
-    color: #740864;
-    padding: 0 5px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state {
-    background: #97e1ad;
-    color: #000000;
-    padding: 0 0px;
-    margin: 0 5px;
-    min-width: 16px;
-}
-
-#keyboard-state > label {
-    padding: 0 5px;
-}
-
-#keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad {
-    background: rgba(0, 0, 0, 0.2);
-}
-
-#scratchpad.empty {
-	background-color: transparent;
-}
-

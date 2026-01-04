@@ -1,35 +1,14 @@
 [{
-    "output": "eDP-1",
      "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
     "spacing": 5, // Gaps between modules (4px)
     "margin-left": 5,
     "margin-right": 5,
     "margin-bottom": 0,
     "margin-top": 5,
-    // Choose the order of the modules
     "modules-left": ["hyprland/window","custom/spotify", "custom/youtube"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["tray", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time","custom/wlogout"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "modules-right": ["tray", "custom/wallpaper", "pulseaudio#out", "pulseaudio#in", "clock", "clock#time","custom/wlogout"],
+
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": false,
@@ -40,23 +19,24 @@
             "*": 2,
         },
     },
+
     "tray": {
         "show-passive-items": true,
         // "icon-size": 21,
         "spacing": 10
     },
+
     "clock": {
         "interval": 600,
-        // "timezone": "America/New_York",
         "format": "  {:%A, %B %d %Y}",
     },
+
     "clock#time": {
         "interval": 1,
-        // "timezone": "America/New_York",
         "format": "  {:%H:%M:%S}",
     },
+
     "pulseaudio#out": {
-        // "scroll-step": 1, // %, can be a fcoat
         "format": "{icon} {volume}%",
         "format-bluetooth": "{volume}% {icon}",
         "format-bluetooth-muted": "  Muted",
@@ -72,6 +52,7 @@
         },
         "on-click": "pavucontrol"
     },
+
     "pulseaudio#in": {
         // "scroll-step": 1, // %, can be a fcoat
         "format": "{format_source}",
@@ -82,6 +63,14 @@
         "format-source-muted": " ",
         "on-click": "pavucontrol"
     },
+
+    "custom/wallpaper": {
+    "format": "󰸉",
+    "tooltip": false,
+    "on-click": "~/.config/waybar/cycle_wallpaper.sh",
+    "interval": 0
+    },
+
     "custom/spotify": {
         "format": "{}",
         "max-length": 40,
@@ -89,6 +78,7 @@
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
         "exec-if": "pgrep spotify"
     },
+
     "custom/youtube": {
         "format": " {}",
         "max-length": 40,
@@ -96,71 +86,31 @@
         "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null", // Script in resources folder
         "exec-if": "playerctl -l 2>/dev/null | grep -q firefox"
     },
+
     "custom/wlogout": {
 	    "format": "󰐥",
-        "on-click": "wlogout",
+        "on-click": "departure",
         "interval" : 86400, // once every day
         "tooltip": true
     }
 },
+
+
 {
-    "output": "eDP-1",
-    // "layer": "top", // Waybar at top layer
-    "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 20, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 5, // Gaps between modules (4px)
+    "position": "bottom", 
+    "spacing": 5, 
     "margin-left": 5,
     "margin-right": 5,
     "margin-top": 0,
     "margin-bottom": 5,
-    // Choose the order of the modules
     "modules-left": ["network", "backlight"],
     "modules-center": [],
     "modules-right": ["battery#internal", "battery#external","temperature#cpu", "cpu", "memory", "power-profiles-daemon"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+
     "backlight": {
 	"format": " {percent}%"
     },
-    "custom/fanspeed": {
-        "exec": "/home/ezntek/.config/waybar/fanspeed",
-        "interval": "1",
-        "format": " {} RPM"
-    },
-    "custom/spotify": {
-        "format": " {}",
-        "max-length": 40,
-        "interval": 30, // Remove this if your script is endless and write in loop
-        "exec": "$HOME/.config/waybar/mediaplayer.sh 2> /dev/null | grep -m1 -i spotify", // Script in resources folder
-        "exec-if": "pgrep spotify"
-    },
-    "custom/wlogout": {
-	    "format": "{}",
-        "exec": "echo  logout",
-        "on-click": "wlogout",
-        "interval" : 86400, // once every day
-        "tooltip": true
-    },
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
+
     "cpu": {
         "interval": 1,
         "format": "CPU  {usage}% ({avg_frequency} GHz)",
@@ -170,6 +120,7 @@
         "interval": 1,
         "format": "RAM {}%"
     },
+
     "battery#external": {
         "bat": "BAT0",
 	"interval": 1,
@@ -180,6 +131,7 @@
             "critical": 10,
         },
     },
+
     "battery#internal": {
         "bat": "BAT1",
 	"interval": 1,
@@ -190,6 +142,7 @@
             "critical": 10,
         },
     },
+
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "  {essid} ({signalStrength}%)",
@@ -199,16 +152,5 @@
         "format-disconnected": "⚠ Disconnected",
         "on-click": "nm-connection-editor",
         //"format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
-    "power-profiles-daemon": {
-        "format": "{icon}  {profile}",
-        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": "true",
-        "format-icons": {
-          "default": "",
-          "performance": "",
-          "balanced": "",
-          "power-saver": ""
-        }
     },
 }]

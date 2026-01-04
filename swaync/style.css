@@ -1,0 +1,66 @@
+* {
+  font-family: JetBrainsMono Nerd Font;
+  font-size: 11px;
+}
+
+.notification-row {
+  outline: none;
+}
+
+.notification {
+  background: #1e1e2e;
+  border-radius: 14px;
+  margin: 8px;
+  padding: 14px;
+  border: 1px solid #313244;
+}
+
+.notification-content {
+  margin-left: 10px;
+}
+
+.summary {
+  font-weight: bold;
+  color: #cdd6f4;
+}
+
+.body {
+  color: #bac2de;
+}
+
+.notification.critical {
+  border: 1px solid #f38ba8;
+}
+
+.control-center {
+  background: #11111b;
+  border-radius: 18px;
+  padding: 12px;
+}
+
+.control-center-list {
+  background: transparent;
+}
+
+.widget-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 10px;
+  color: #cdd6f4;
+}
+
+.widget-dnd {
+  margin: 10px;
+}
+
+.widget-dnd > switch {
+  border-radius: 999px;
+}
+
+.widget-dnd > switch:checked {
+  background: #89b4fa;
+}
+
+.widget-dnd > switch {
+  background: #313244;
+}

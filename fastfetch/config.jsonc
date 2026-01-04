@@ -1,0 +1,121 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+    "logo": {
+        "source": "/home/Eoin/.config/fastfetch/ascii.txt",
+        "type": "auto",
+        "height": 10,
+        "width": 3,
+        "padding": {
+            "top": 2,
+            "left": 0,
+            "right": 3
+        },
+        "color": {
+            "1": "#22d3ee"
+        }
+    },
+    "modules": [
+        "break",
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;107;114;128m┌─────────────────────────Hardware─────────────────────────┐"
+        },
+        {
+            "type": "host",
+            "key": " PC",
+            "keyColor": "#22d3ee"
+        },
+        {
+            "type": "cpu",
+            "key": "│ ├ CPU",
+            "keyColor": "#22d3ee"
+        },
+        {
+            "type": "gpu",
+            "key": "│ ├󰍛 GPU",
+            "keyColor": "#22d3ee"
+        },
+        {
+            "type": "memory",
+            "key": "│ ├󰍛 RAM",
+            "keyColor": "#22d3ee"
+        },
+        {
+            "type": "disk",
+            "key": "│ ├ Disk",
+            "keyColor": "#22d3ee"
+        },
+        {
+            "type": "battery",
+            "key": "│ ├ BATT",
+            "keyColor": "#22d3ee"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;107;114;128m└─────────────────────────────────────────────────────────┘"
+        },
+
+        "break",
+
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;107;114;128m┌─────────────────────────System──────────────────────────┐"
+        },
+        {
+            "type": "os",
+            "key": " OS",
+            "keyColor": "#84cc16"
+        },
+        {
+            "type": "kernel",
+            "key": "│ ├ Kernel",
+            "keyColor": "#84cc16"
+        },
+        {
+            "type": "bios",
+            "key": "│ ├ BIOS",
+            "keyColor": "#84cc16"
+        },
+        {
+            "type": "packages",
+            "key": "│ ├󰏖 Packages",
+            "keyColor": "#84cc16"
+        },
+        {
+            "type": "shell",
+            "key": "│ ├ Shell",
+            "keyColor": "#84cc16"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;107;114;128m└─────────────────────────────────────────────────────────┘"
+        },
+
+        "break",
+
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;107;114;128m┌─────────────────────────Uptime──────────────────────────┐"
+        },
+        {
+            "type": "uptime",
+            "key": "│ Wake Time",
+            "keyColor": "#c084fc"
+        },
+        {
+            "type": "datetime",
+            "key": "│ Date/Time",
+            "keyColor": "#c084fc"
+        },
+        {
+            "type": "custom",
+            "format": "\u001b[38;2;107;114;128m└─────────────────────────────────────────────────────────┘"
+        },
+
+        {
+            "type": "colors",
+            "paddingLeft": 2,
+            "symbol": "circle"
+        }
+    ]
+}
