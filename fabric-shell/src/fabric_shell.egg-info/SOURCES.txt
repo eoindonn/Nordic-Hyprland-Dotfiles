@@ -1,9 +1,0 @@
-pyproject.toml
-src/fabric_shell/__init__.py
-src/fabric_shell.egg-info/PKG-INFO
-src/fabric_shell.egg-info/SOURCES.txt
-src/fabric_shell.egg-info/dependency_links.txt
-src/fabric_shell.egg-info/requires.txt
-src/fabric_shell.egg-info/top_level.txt
-src/fabric_shell/bar/__init__.py
-src/fabric_shell/bar/config.py

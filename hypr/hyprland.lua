@@ -59,13 +59,21 @@ local menu = "wofi --show drun"
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 
 hl.on("hyprland.start", function()
+	-- Wallpaper
 	hl.exec_cmd("awww-daemon & aww img /home/Eoin/.config/hypr/wallpapers/wallpaper.jpg")
-	hl.exec_cmd("nm-applet & kdeconnect-indicator")
-	hl.exec_cmd("uv --project ~/.config/fabric-shell run -m fabric_shell.bar.config & hypridle & swaync")
+	-- Tray applets
+	hl.exec_cmd("kdeconnect-indicator & pamac-tray-plasma & easyeffects --hide-window")
+	-- Nextcloud sync; no window, and the bar hides its tray icon (status is shown in the bar instead)
+	hl.exec_cmd("nextcloud --background")
+	-- Environment apps
+	-- the bar is also the notification daemon (replaces swaync)
+	hl.exec_cmd("uv --project ~/.config/fabric-shell run -m fabric_shell.bar  & hypridle")
+	hl.exec_cmd("wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("wl-paste --type image --watch cliphist store")
 end)
 
 -------------------------------
----- ENVIRONMENT VARIABLES ----
+---- ENVIRONMENT VARIABLES ----hl.exec_cmd("
 -------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
@@ -76,6 +84,7 @@ hl.env("XCURSOR_THEME", "breeze_cursors")
 hl.env("HYPRCURSOR_THEME", "breeze_cursors")
 hl.env("dpi", "120")
 hl.env("GTK_THEME", "Nordic")
+hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -139,6 +148,7 @@ hl.config({
 		blur = {
 			enabled = true,
 			size = 3,
+			--variant = "kawase",
 			passes = 1,
 			noise = 0.01,
 			ignore_opacity = false,
@@ -269,8 +279,8 @@ hl.gesture({
 })
 
 hl.gesture({
-	fingers = 4,
-	direction = "pinch",
+	fingers = 3,
+	direction = "vertical",
 	action = "fullscreen",
 })
 
@@ -291,7 +301,7 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("departure"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(fileManager))
-hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
@@ -391,6 +401,23 @@ hl.window_rule({
 	},
 
 	no_focus = true,
+})
+
+-- Fabric bar and its dropdowns: frosted glass. ignore_alpha stops the fully
+-- transparent parts of the (fixed-size) dropdown surfaces being blurred.
+hl.layer_rule({
+	name = "fabric-blur",
+	match = { namespace = "^fabric" },
+	blur = true,
+	ignore_alpha = 0.2,
+})
+
+-- The dropdowns slide out of the bar themselves; a layer animation on top
+-- would fight that.
+hl.layer_rule({
+	name = "fabric-dropdown-no-anim",
+	match = { namespace = "^fabric-dropdown$" },
+	no_anim = true,
 })
 
 -- Layer rules also return a handle.

@@ -13,10 +13,10 @@
     --color5:  #E5E9F0; /* nord5 */
     --color6:  #ECEFF4; /* nord6 */
 
-    --color7:  #88C0D0; /* nord7 (frost) */
-    --color8:  #81A1C1; /* nord8 */
-    --color9:  #5E81AC; /* nord9 */
-    --color10: #8FBCBB; /* nord10 */
+    --color7:  #88C0D0; /* nord8 (frost) */
+    --color8:  #81A1C1; /* nord9 */
+    --color9:  #5E81AC; /* nord10 */
+    --color10: #8FBCBB; /* nord7 */
 
     --color11: #BF616A; /* nord11 (red) */
     --color12: #D08770; /* nord12 (orange) */
@@ -28,6 +28,8 @@
 
     --window-bg: alpha(var(--background), 0.6);
     --module-bg: alpha(var(--background), 0.4);
+    /* secondary text that stays readable on the solid background */
+    --text-muted: #8C95A8;
 
     --border-color: var(--color9);
 
@@ -49,11 +51,24 @@
     border-radius: 100px;
 }
 
-#bar-inner {
-    padding: 4px;
-    border: solid 2px;
-    border-color: var(--border-color);
+/* fill and outline shared by the bar and its dropdowns; drawn in
+   widgets/shell.py so a dropdown can merge into the bar's edge */
+#shell-surface {
     background-color: var(--window-bg);
+    border: solid 2px var(--border-color);
+}
+
+/* same, but opaque: for dropdowns that need to be easy to read. The
+   colour is what the translucent bar looks like over the wallpaper, so the
+   two still match */
+#shell-surface-solid {
+    background-color: #4E5873;
+    border: solid 2px var(--border-color);
+}
+
+#bar-inner {
+    /* 4px padding + the 2px outline drawn by hand */
+    padding: 6px;
     min-height: 28px;
 }
 
@@ -90,6 +105,149 @@
     background-color: var(--ws-empty);
 }
 
+#clipboard-button,
+#deck-button {
+    padding: 2px 4px;
+    background-color: var(--module-bg);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#clipboard-button:hover,
+#deck-button:hover {
+    background-color: var(--ws-hover);
+}
+
+/* clipboard history dropdown */
+#clipboard {
+    padding: 8px 10px 16px 10px;
+}
+
+#clip-header {
+    padding: 0px 4px;
+}
+
+#clip-title {
+    font-weight: 900;
+}
+
+#clip-count {
+    font-size: 13px;
+    color: var(--color4);
+}
+
+#clip-clear {
+    font-size: 13px;
+    padding: 4px 12px;
+    background-color: var(--color1);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#clip-clear:hover {
+    background-color: var(--color2);
+}
+
+#clip-clear.confirm,
+#clip-clear.confirm:hover {
+    background-color: var(--color11);
+}
+
+#clip-search {
+    background-color: var(--color1);
+    padding: 8px 14px;
+    font-size: 14px;
+}
+
+#clip-search image {
+    margin-right: 8px;
+    color: var(--color4);
+}
+
+#clip-search:focus {
+    background-color: var(--color2);
+}
+
+#clip-card {
+    background-color: var(--color1);
+    border-radius: 14px;
+}
+
+#clip-body {
+    border-radius: 14px;
+    padding: 10px 6px 10px 12px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#clip-body:hover {
+    background-color: var(--color2);
+}
+
+#clip-body:active {
+    background-color: var(--color3);
+}
+
+#clip-meta label,
+#clip-meta image {
+    font-size: 12px;
+    color: var(--color4);
+}
+
+#clip-card.link #clip-meta label,
+#clip-card.link #clip-meta image {
+    color: var(--color7);
+}
+
+#clip-card.image #clip-meta label,
+#clip-card.image #clip-meta image {
+    color: var(--color15);
+}
+
+#clip-text {
+    font-size: 14px;
+}
+
+#clip-card.link #clip-text {
+    color: var(--color7);
+}
+
+#clip-swatch {
+    min-width: 24px;
+    min-height: 24px;
+    border-radius: 7px;
+    border: solid 1px alpha(var(--foreground), 0.25);
+}
+
+#clip-delete {
+    margin: 8px 8px 0px 0px;
+    padding: 5px;
+    color: var(--color4);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#clip-delete:hover {
+    background-color: var(--color11);
+}
+
+#clip-delete:hover image {
+    color: var(--background);
+}
+
+#clip-empty {
+    padding: 30px 0px;
+}
+
+#clip-empty image,
+#clip-empty label {
+    color: var(--text-muted);
+}
+
+#clip-scroller scrollbar {
+    margin-left: 6px;
+}
+
+#clip-scroller slider {
+    min-width: 4px;
+    background-color: var(--color3);
+}
 
 #system-status {
     padding: 2px;
@@ -104,18 +262,18 @@
     background-color: transparent;
 }
 
+/* circular progress bars draw their value with border-color */
 #battery-progress-bar {
     border: solid 0px var(--color12);
 }
 
 #battery-progress-bar.charging,
 #battery-progress-bar.plugged {
-    border: var(--nice_green);
+    border-color: var(--nice_green);
 }
 
-#battery-progress-bar.critical:not(.charging) {
-    border: var(--color12);
-    transition: opacity 150ms ease
+#battery-progress-bar.critical {
+    border-color: var(--color11);
 }
 
 #cpu-progress-bar {
@@ -127,8 +285,33 @@
     border: solid 0px var(--border-color);
 }
 
+#volume-progress-bar.muted {
+    border-color: var(--color3);
+}
+
+/* backup indicator: symbolic icon tinted by overall backup health */
+#backup-status {
+    padding: 0px 3px;
+    color: var(--text-muted);
+}
+
+#backup-status.ok {
+    color: var(--nice_green);
+}
+
+#backup-status.running {
+    color: var(--color7);
+}
+
+#backup-status.overdue {
+    color: var(--color13);
+}
+
+#backup-status.failed {
+    color: var(--color11);
+}
+
 #date-time,
-#hyprland-language,
 #hyprland-window {
     background-color: var(--module-bg);
     padding: 0px 8px;
@@ -185,25 +368,13 @@ tooltip {
     border: solid 2px;
     border-color: var(--border-color);
     background-color: var(--window-bg);
+    /* the global 100px pill turns multi-line tooltips into ovals that clip
+       their text; this still reads as a pill for a single line */
+    border-radius: 16px;
 }
 
 tooltip>* {
-    padding: 2px 4px
-}
-
-#power-button {
-    padding: 2px 4px;
-    background-color: var(--color12);
-    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-#power-button:hover {
-    background-color: var(--color11);
-}
-
-#power-notch {
-    padding: 2px 4px;
-    background-color: var(--module-bg);
+    padding: 6px 12px;
 }
 
 #notification-button {
@@ -216,10 +387,1078 @@ tooltip>* {
     background-color: var(--ws-hover);
 }
 
-#power-off-button{
+#power-off-button,
+#reboot-button,
+#suspend-button {
     transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-#power-off-button:hover {
+#power-off-button:hover,
+#reboot-button:hover,
+#suspend-button:hover {
     background-color: var(--ws-hover);
+}
+
+/* armed: the next click runs the action */
+#power-off-button.confirm,
+#reboot-button.confirm,
+#suspend-button.confirm {
+    background-color: var(--color11);
+}
+/* quick settings panel, opened by hovering the active window title */
+#quick-settings {
+    padding: 8px 10px 16px 10px;
+}
+
+
+#qs-header {
+    padding: 0px 2px;
+}
+
+#qs-battery {
+    font-weight: 900;
+    padding: 6px 12px;
+    background-color: var(--color1);
+}
+
+#qs-header-button {
+    padding: 8px;
+    min-width: 20px;
+    background-color: var(--color1);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#qs-header-button:hover {
+    background-color: var(--color2);
+}
+
+#qs-header-button.active {
+    background-color: var(--color8);
+}
+
+#qs-header-button.active image {
+    color: var(--background);
+}
+
+/* sliders */
+#slider-row {
+    padding: 0px 2px;
+}
+
+#slider-icon {
+    padding: 6px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#slider-icon:hover {
+    background-color: var(--color1);
+}
+
+/* device-menu arrow at the end of a slider row */
+#slider-arrow {
+    margin-left: 8px;
+    padding: 6px 10px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#slider-arrow:hover {
+    background-color: var(--color1);
+}
+
+#slider-row.expanded #slider-arrow {
+    background-color: var(--color8);
+}
+
+#slider-row.expanded #slider-arrow image {
+    color: var(--background);
+}
+
+#slider-row.muted #quick-slider highlight {
+    background-color: var(--color3);
+}
+
+#quick-slider trough {
+    min-height: 6px;
+    background-color: var(--color2);
+}
+
+#quick-slider highlight {
+    background-color: var(--color8);
+}
+
+#quick-slider slider {
+    min-width: 18px;
+    min-height: 18px;
+    margin: -6px 0px;
+    background-color: var(--color6);
+}
+
+/* toggle tiles */
+#quick-toggle {
+    background-color: var(--color1);
+    min-height: 48px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#quick-toggle.active {
+    background-color: var(--color8);
+}
+
+#quick-toggle.active label,
+#quick-toggle.active image {
+    color: var(--background);
+}
+
+#tile-main {
+    padding: 6px 14px;
+}
+
+#quick-toggle.has-arrow #tile-main {
+    border-radius: 100px 0px 0px 100px;
+}
+
+#tile-main:hover,
+#tile-arrow:hover {
+    background-color: alpha(var(--foreground), 0.08);
+}
+
+#tile-arrow {
+    padding: 0px 12px;
+    border-radius: 0px 100px 100px 0px;
+}
+
+#quick-toggle.expanded #tile-arrow {
+    background-color: alpha(var(--background), 0.15);
+}
+
+#tile-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#tile-subtitle {
+    font-size: 12px;
+}
+
+/* menus that slide open under a tile */
+#detail-menu {
+    background-color: var(--color1);
+    border-radius: 18px;
+    padding: 10px;
+    margin-top: 2px;
+}
+
+#menu-header {
+    padding: 2px 6px 6px 6px;
+}
+
+#menu-title {
+    font-weight: 900;
+}
+
+#menu-item,
+#menu-settings,
+#detail-menu > button {
+    border-radius: 10px;
+    padding: 8px 10px;
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#menu-item:hover,
+#menu-settings:hover,
+#detail-menu > button:hover {
+    background-color: var(--color2);
+}
+
+#menu-item.active label {
+    font-weight: 700;
+}
+
+#menu-status,
+#menu-empty {
+    font-size: 13px;
+    color: var(--color4);
+}
+
+#menu-empty {
+    padding: 6px 10px;
+}
+
+#menu-settings {
+    font-size: 14px;
+    border-top: solid 1px var(--color2);
+}
+
+/* armed power action: stay red while hovered so the second click is deliberate */
+#detail-menu > button.confirm,
+#detail-menu > button.confirm:hover {
+    background-color: var(--color11);
+}
+
+/* nextcloud tile: subtitle and icon reflect sync state */
+@keyframes sync-pulse {
+    from { opacity: 1; }
+    to { opacity: 0.4; }
+}
+
+#quick-toggle.syncing #tile-main image {
+    animation: sync-pulse 0.9s ease-in-out infinite alternate;
+}
+
+#quick-toggle.warning #tile-subtitle {
+    color: var(--color13);
+}
+
+#quick-toggle.error {
+    background-color: var(--color11);
+}
+
+#sync-synced { color: var(--nice_green); }
+#sync-syncing { color: var(--color7); }
+#sync-warning { color: var(--color13); }
+#sync-error { color: var(--color11); }
+
+/* tailscale peer list */
+#menu-subtitle {
+    font-size: 12px;
+    color: var(--color4);
+    padding: 0px 10px 4px 10px;
+}
+
+#menu-item.offline label,
+#menu-item.offline image {
+    color: alpha(var(--foreground), 0.5);
+}
+
+#menu-item-subtitle {
+    font-size: 12px;
+    color: alpha(var(--foreground), 0.6);
+}
+
+/* calendar dropdown */
+#calendar {
+    padding: 8px 10px 16px 10px;
+}
+
+#cal-header {
+    padding: 0px 4px;
+}
+
+#cal-title {
+    font-weight: 900;
+}
+
+#cal-nav,
+#cal-today {
+    padding: 4px 10px;
+    background-color: var(--color1);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#cal-today {
+    font-size: 13px;
+}
+
+#cal-nav:hover,
+#cal-today:hover {
+    background-color: var(--color2);
+}
+
+/* segmented view switcher */
+#cal-tabs {
+    background-color: var(--color1);
+    padding: 3px;
+}
+
+#cal-tab {
+    font-size: 13px;
+    padding: 5px 0px;
+    transition: background-color 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#cal-tab:hover {
+    background-color: var(--color2);
+}
+
+#cal-tab.active {
+    background-color: var(--color8);
+}
+
+#cal-tab.active label {
+    color: var(--background);
+    font-weight: 700;
+}
+
+/* month grid */
+#cal-weekday {
+    font-size: 12px;
+    color: var(--color4);
+    padding: 2px 0px 4px 0px;
+}
+
+#cal-day {
+    border-radius: 12px;
+    padding: 4px 0px 3px 0px;
+    min-height: 34px;
+    transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#cal-day label {
+    font-size: 14px;
+}
+
+#cal-day:hover {
+    background-color: var(--color1);
+}
+
+#cal-day.other-month label {
+    color: var(--text-muted);
+}
+
+#cal-day.today {
+    background-color: alpha(var(--color8), 0.25);
+}
+
+#cal-day.today label {
+    font-weight: 900;
+}
+
+#cal-day.selected {
+    background-color: var(--color8);
+}
+
+#cal-day.selected label {
+    color: var(--background);
+    font-weight: 900;
+}
+
+#cal-dots {
+    min-height: 5px;
+}
+
+#cal-dot {
+    min-width: 5px;
+    min-height: 5px;
+    border-radius: 3px;
+}
+
+/* event lists */
+#cal-day-heading {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color4);
+    padding: 4px 4px 0px 4px;
+}
+
+#cal-day-heading.today {
+    color: var(--color8);
+}
+
+#cal-event {
+    border-radius: 12px;
+    padding: 6px 10px 6px 6px;
+    background-color: var(--color1);
+    transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#cal-event:hover {
+    background-color: var(--color2);
+}
+
+#cal-event.past {
+    opacity: 0.55;
+}
+
+#cal-event.now {
+    border: solid 1px var(--color8);
+}
+
+#cal-event-bar {
+    min-width: 4px;
+    min-height: 32px;
+    border-radius: 2px;
+}
+
+#cal-event-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#cal-event-detail {
+    font-size: 12px;
+    color: alpha(var(--foreground), 0.65);
+}
+
+#cal-empty-inline {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 0px 6px;
+}
+
+#cal-empty {
+    padding: 22px 0px;
+}
+
+#cal-empty image,
+#cal-empty label {
+    color: var(--text-muted);
+}
+
+#cal-scroller scrollbar {
+    margin-left: 6px;
+}
+
+#cal-scroller slider {
+    min-width: 4px;
+    background-color: var(--color3);
+}
+
+#cal-footer {
+    padding: 2px 4px 0px 4px;
+}
+
+#cal-status {
+    font-size: 12px;
+    color: var(--color4);
+}
+
+#cal-open {
+    font-size: 13px;
+    padding: 4px 12px;
+    background-color: var(--color1);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#cal-open:hover {
+    background-color: var(--color2);
+}
+
+#cal-page {
+    transition: opacity 180ms ease-out;
+}
+
+#cal-page.entering {
+    opacity: 0;
+}
+
+/* deck dropdown */
+#deck {
+    padding: 8px 10px 16px 10px;
+}
+
+#deck-title {
+    font-weight: 900;
+    padding: 0px 4px;
+}
+
+#deck-chip {
+    font-size: 13px;
+    padding: 4px 12px;
+    background-color: var(--color1);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#deck-chip:hover {
+    background-color: var(--color2);
+}
+
+#deck-chip.active {
+    background-color: var(--color8);
+}
+
+#deck-chip.active label {
+    color: var(--background);
+    font-weight: 700;
+}
+
+#deck-chip-dot {
+    min-width: 8px;
+    min-height: 8px;
+    border-radius: 4px;
+}
+
+#deck-page {
+    transition: opacity 180ms ease-out;
+}
+
+#deck-page.entering {
+    opacity: 0;
+}
+
+/* column tabs */
+#deck-tabs,
+#deck-moves {
+    background-color: var(--color1);
+    padding: 3px;
+}
+
+#deck-tab,
+#deck-move {
+    font-size: 13px;
+    padding: 5px 4px;
+    transition: background-color 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#deck-tab:hover,
+#deck-move:hover {
+    background-color: var(--color2);
+}
+
+#deck-tab.active,
+#deck-move.active {
+    background-color: var(--color8);
+}
+
+#deck-tab.active label,
+#deck-move.active label {
+    color: var(--background);
+    font-weight: 700;
+}
+
+#deck-tab-count {
+    font-size: 11px;
+    color: var(--color4);
+}
+
+/* cards */
+#deck-card {
+    border-radius: 12px;
+    padding: 8px 10px;
+    background-color: var(--color1);
+    transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#deck-card:hover {
+    background-color: var(--color2);
+}
+
+#deck-card.done {
+    opacity: 0.55;
+}
+
+#deck-row-bar {
+    min-width: 4px;
+    border-radius: 2px;
+}
+
+#deck-card-row-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#deck-due,
+#deck-due label,
+#deck-due image,
+#deck-context,
+#deck-has-description {
+    font-size: 12px;
+    color: alpha(var(--foreground), 0.65);
+}
+
+#deck-due.overdue label,
+#deck-due.overdue image {
+    color: var(--color11);
+}
+
+#deck-label {
+    font-size: 11px;
+    padding: 1px 8px;
+}
+
+#deck-group {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color4);
+    padding: 4px 4px 0px 4px;
+}
+
+#deck-group.overdue {
+    color: var(--color11);
+}
+
+#deck-add {
+    border-radius: 12px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--color4);
+    border: dashed 1px var(--color3);
+    transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#deck-add:hover {
+    background-color: var(--color1);
+}
+
+#deck-add-entry {
+    background-color: var(--color1);
+    padding: 8px 14px;
+    font-size: 14px;
+}
+
+#deck-add-entry:focus {
+    background-color: var(--color2);
+}
+
+#deck-add-confirm {
+    padding: 4px 14px;
+    background-color: var(--color8);
+}
+
+#deck-add-confirm label {
+    color: var(--background);
+    font-weight: 700;
+}
+
+#deck-add-cancel {
+    padding: 6px;
+}
+
+#deck-add-cancel:hover {
+    background-color: var(--color1);
+}
+
+/* card detail */
+#deck-back {
+    font-size: 13px;
+    padding: 4px 12px 4px 8px;
+    background-color: var(--color1);
+}
+
+#deck-back:hover {
+    background-color: var(--color2);
+}
+
+#deck-card-title {
+    font-size: 16px;
+    font-weight: 900;
+    padding: 0px 4px;
+}
+
+#deck-pill {
+    font-size: 12px;
+    padding: 2px 10px;
+    background-color: var(--color1);
+}
+
+#deck-pill.overdue {
+    background-color: alpha(var(--color11), 0.3);
+}
+
+#deck-description {
+    font-size: 13px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background-color: var(--color1);
+}
+
+#deck-empty-inline {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 0px 6px;
+}
+
+#deck-empty {
+    padding: 22px 0px;
+}
+
+#deck-empty image,
+#deck-empty label {
+    color: var(--text-muted);
+}
+
+#deck-scroller scrollbar {
+    margin-left: 6px;
+}
+
+#deck-scroller slider {
+    min-width: 4px;
+    background-color: var(--color3);
+}
+
+#deck-footer {
+    padding: 2px 4px 0px 4px;
+}
+
+#deck-status {
+    font-size: 12px;
+    color: var(--color4);
+}
+
+#deck-open,
+#deck-open-card {
+    font-size: 13px;
+    padding: 4px 12px;
+    background-color: var(--color1);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#deck-open:hover,
+#deck-open-card:hover {
+    background-color: var(--color2);
+}
+
+/* card descriptions (Markdown) */
+#deck-description {
+    padding: 10px 12px;
+    border-radius: 12px;
+    background-color: var(--color1);
+}
+
+#md-p,
+#md-li-text,
+#md-quote-text {
+    font-size: 13px;
+}
+
+#md-h1 {
+    font-size: 17px;
+    font-weight: 900;
+}
+
+#md-h2 {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+#md-h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color8);
+}
+
+#md-bullet {
+    font-size: 13px;
+    color: var(--color8);
+    min-width: 12px;
+}
+
+#md-bullet.checked {
+    color: var(--color14);
+}
+
+#md-li-text.checked {
+    color: var(--text-muted);
+}
+
+#md-quote {
+    border-left: solid 3px var(--color9);
+    border-radius: 0px;
+    padding-left: 10px;
+}
+
+#md-quote-text {
+    color: var(--color4);
+}
+
+#md-code {
+    background-color: var(--background);
+    border-radius: 8px;
+    padding: 8px 10px;
+}
+
+#md-code-text {
+    font-size: 12px;
+    color: var(--color13);
+}
+
+#md-rule {
+    min-height: 1px;
+    background-color: var(--color3);
+    margin: 4px 0px;
+}
+
+/* card actions */
+#deck-done {
+    font-size: 13px;
+    padding: 4px 12px;
+    background-color: var(--color14);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#deck-done label,
+#deck-done image {
+    color: var(--background);
+    font-weight: 700;
+}
+
+#deck-done:hover {
+    background-color: var(--nice_green);
+}
+
+#deck-done.is-done {
+    background-color: var(--color1);
+}
+
+#deck-done.is-done label,
+#deck-done.is-done image {
+    color: var(--foreground);
+    font-weight: 400;
+}
+
+#deck-done.is-done:hover {
+    background-color: var(--color2);
+}
+
+#deck-description link {
+    color: var(--color8);
+}
+
+/* notification hub (bell dropdown) */
+#notif-hub {
+    padding: 8px 10px 16px 10px;
+}
+
+#notif-header {
+    padding: 0px 4px;
+}
+
+#notif-title {
+    font-weight: 900;
+}
+
+#notif-count {
+    font-size: 13px;
+    color: var(--color4);
+}
+
+#notif-dnd,
+#notif-clear {
+    font-size: 13px;
+    padding: 4px 12px;
+    background-color: var(--color1);
+    transition: background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#notif-dnd {
+    padding: 5px 9px;
+}
+
+#notif-dnd:hover,
+#notif-clear:hover {
+    background-color: var(--color2);
+}
+
+#notif-dnd.active {
+    background-color: var(--color8);
+}
+
+#notif-dnd.active label,
+#notif-dnd.active image {
+    color: var(--background);
+    font-weight: 700;
+}
+
+#notif-group-header {
+    padding: 0px 6px;
+}
+
+#notif-group-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color4);
+}
+
+#notif-group-clear {
+    font-size: 12px;
+    padding: 2px 10px;
+    color: var(--color4);
+}
+
+#notif-group-clear:hover {
+    background-color: var(--color1);
+}
+
+#notif-empty {
+    padding: 24px 0px;
+}
+
+#notif-empty image,
+#notif-empty label {
+    color: var(--text-muted);
+}
+
+/* a notification, in the hub or as a popup */
+#notif-card {
+    border-radius: 16px;
+    padding: 10px 12px 12px 12px;
+    background-color: var(--color1);
+    transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#notif-card:hover {
+    background-color: var(--color2);
+}
+
+#notif-card.popup {
+    background-color: var(--window-bg);
+    border: solid 2px var(--border-color);
+    border-radius: 20px;
+}
+
+#notif-card.popup:hover {
+    background-color: var(--background);
+}
+
+#notif-card.critical {
+    border: solid 2px var(--color11);
+}
+
+#notif-app {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color4);
+}
+
+#notif-time {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+#notif-close {
+    padding: 4px;
+    color: var(--color4);
+}
+
+#notif-close:hover {
+    background-color: var(--color11);
+}
+
+#notif-close:hover image {
+    color: var(--background);
+}
+
+#notif-summary {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#notif-body {
+    font-size: 13px;
+    color: alpha(var(--foreground), 0.8);
+}
+
+#notif-body link {
+    color: var(--color8);
+}
+
+#notif-action {
+    font-size: 13px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    background-color: var(--color2);
+    transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#notif-action:hover {
+    background-color: var(--color8);
+}
+
+#notif-action:hover label {
+    color: var(--background);
+}
+
+#notif-scroller scrollbar {
+    margin-left: 6px;
+}
+
+#notif-scroller slider {
+    min-width: 4px;
+    background-color: var(--color3);
+}
+
+/* unread count on the bell */
+#notif-badge {
+    font-size: 11px;
+    font-weight: 900;
+    min-width: 16px;
+    padding: 0px 5px;
+    color: var(--background);
+    background-color: var(--color8);
+}
+
+/* now playing, top of the hub */
+#media {
+    border-radius: 18px;
+    padding: 12px 14px;
+    background-color: var(--color1);
+}
+
+#media-art.placeholder {
+    min-width: 72px;
+    min-height: 72px;
+    border-radius: 12px;
+    background-color: var(--color2);
+    color: var(--text-muted);
+}
+
+#media-app {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color8);
+}
+
+#media-title {
+    font-size: 15px;
+    font-weight: 900;
+}
+
+#media-artist {
+    font-size: 13px;
+    color: alpha(var(--foreground), 0.75);
+}
+
+#media-switch {
+    padding: 3px;
+}
+
+#media-switch:hover {
+    background-color: var(--color2);
+}
+
+#media-time {
+    font-size: 11px;
+    color: var(--color4);
+}
+
+#media-scale trough {
+    min-height: 4px;
+    background-color: var(--color2);
+}
+
+#media-scale highlight {
+    background-color: var(--color8);
+}
+
+#media-scale slider {
+    min-width: 12px;
+    min-height: 12px;
+    margin: -4px 0px;
+    background-color: var(--color6);
+}
+
+#media-control {
+    padding: 8px;
+    transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#media-control:hover {
+    background-color: var(--color2);
+}
+
+#media-control:disabled image {
+    color: var(--color3);
+}
+
+#media-play {
+    padding: 10px;
+    background-color: var(--color8);
+    transition: background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+#media-play image {
+    color: var(--background);
+}
+
+#media-play:hover {
+    background-color: var(--color7);
 }

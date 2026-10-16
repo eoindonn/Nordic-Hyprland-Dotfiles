@@ -5,18 +5,25 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "fabric-shell"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+description = "Fabric-based Hyprland status bar"
 requires-python = ">=3.14"
 dependencies = [
     "dbus-next>=0.2.3",
     "fabric",
+    "icalendar>=7.3.0",
+    "loguru>=0.7.3",
     "psutil>=7.2.2",
 ]
 
 [tool.uv.sources]
 fabric = { git = "https://github.com/Fabric-Development/fabric.git" }
 
+[project.scripts]
+fabric-bar = "fabric_shell.bar.main:main"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 include = ["fabric_shell*"]
+
+[tool.setuptools.package-data]
+fabric_shell = ["**/*.css"]

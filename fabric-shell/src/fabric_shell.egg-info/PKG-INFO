@@ -1,9 +1,0 @@
-Metadata-Version: 2.4
-Name: fabric-shell
-Version: 0.1.0
-Summary: Add your description here
-Requires-Python: >=3.14
-Description-Content-Type: text/markdown
-Requires-Dist: dbus-next>=0.2.3
-Requires-Dist: fabric
-Requires-Dist: psutil>=7.2.2

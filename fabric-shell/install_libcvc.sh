@@ -1,8 +1,9 @@
-# !/usr/bin/env bash
+#!/usr/bin/env bash
 
 cinnamon_git="https://github.com/linuxmint/cinnamon-desktop"
 cinnamon_git_name="cinnamon-desktop"
 cwd="$(pwd)"
+script_dir="$(cd "$(dirname "$0")" && pwd)"
 
 pre_check_exists() {
     # check if Cvc typelibs are installed
@@ -23,7 +24,7 @@ pre_check_exists() {
             exit 0
         fi
     else
-        echo "typelib files not found, check meson logs";
+        echo "libcvc not installed, building it...";
     fi
 }
 
@@ -32,8 +33,11 @@ prepare() {
     mkdir -p ignore_me_libcvc_build
     cd ignore_me_libcvc_build
     git clone ${cinnamon_git}
-    patch -i ../$(dirname $0)/meson.build.patch ${cwd}/ignore_me_libcvc_build/${cinnamon_git_name}/meson.build
-    # ^ we shorten the build time by removing unused build targets
+    # optional: shorten the build time by removing unused build targets
+    patch_file="${script_dir}/meson.build.patch"
+    if [ -f "${patch_file}" ]; then
+        patch -i "${patch_file}" ${cwd}/ignore_me_libcvc_build/${cinnamon_git_name}/meson.build
+    fi
 }
 
 build() {

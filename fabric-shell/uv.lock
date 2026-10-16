@@ -1,17 +1,14 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.14"
 
 [[package]]
 name = "click"
-version = "8.4.1"
+version = "8.5.0"
 source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/9b/98/518d8e5081007684232226f475082b30087d0f585e8457db087298259f49/click-8.4.1.tar.gz", hash = "sha256:918b5633eddf6b41c32d4f454bf0de810065c74e3f7dbf8ee5452f8be88d3e96", size = 353007, upload-time = "2026-05-22T04:08:37.769Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c7/0e/7fa0ef50764b67090eca4114772a2abf8b6148198475e54c660b97caeee6/click-8.5.0.tar.gz", hash = "sha256:ba0d2089de75ea0310e2dde03160e6ca10009947fb95a182f9b54021bb272e34", size = 382235, upload-time = "2026-08-26T13:33:14.56Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/c7/0d/67e5b4109ea4a837e80daa87c2c696711955e40449a97e8926672534def2/click-8.4.1-py3-none-any.whl", hash = "sha256:482be17c6991b8c19c5429a1e995d9b0efdbb63172824c41f99965dc0ade8ec2", size = 116639, upload-time = "2026-05-22T04:08:35.26Z" },
+    { url = "https://files.pythonhosted.org/packages/58/50/6c0d534c5f134586a8e1ba4e330569e32f057e33372ae556463212fb4cd3/click-8.5.0-py3-none-any.whl", hash = "sha256:255bc9599cf7748b4b1a446ccc735421bd08a2ae529a8b88597d3de5664ee360", size = 125251, upload-time = "2026-08-26T13:33:12.928Z" },
 ]
 
 [[package]]
@@ -35,7 +32,7 @@ wheels = [
 [[package]]
 name = "fabric"
 version = "0.0.2"
-source = { git = "https://github.com/Fabric-Development/fabric.git#23cab85fc61f1cdbb5f60db0027dc57026ba05b7" }
+source = { git = "https://github.com/Fabric-Development/fabric.git#285439dfcb8cd9ab07b83fb5fa48c34489d6ba03" }
 dependencies = [
     { name = "click" },
     { name = "loguru" },
@@ -50,6 +47,8 @@ source = { editable = "." }
 dependencies = [
     { name = "dbus-next" },
     { name = "fabric" },
+    { name = "icalendar" },
+    { name = "loguru" },
     { name = "psutil" },
 ]
 
@@ -57,7 +56,22 @@ dependencies = [
 requires-dist = [
     { name = "dbus-next", specifier = ">=0.2.3" },
     { name = "fabric", git = "https://github.com/Fabric-Development/fabric.git" },
+    { name = "icalendar", specifier = ">=7.3.0" },
+    { name = "loguru", specifier = ">=0.7.3" },
     { name = "psutil", specifier = ">=7.2.2" },
+]
+
+[[package]]
+name = "icalendar"
+version = "7.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "python-dateutil" },
+    { name = "tzdata" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/47/2b/1bbf82d316df18c3331d9a06228819c8a5814ceda545a3e9980e52ffce1b/icalendar-7.3.0.tar.gz", hash = "sha256:7bd001c8e648205e1bde5c6a5b77096598e8d0893dcf57755c6c597635620132", size = 525811, upload-time = "2026-08-19T15:10:21.05Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bb/82/50bff78b0bb0c7d7c0cb39e0ee189b92f611fff6bd7cf57f25e92d5a7551/icalendar-7.3.0-py3-none-any.whl", hash = "sha256:8355acfe17be81b368f0b1e3740817cea9b56ea889931f8f1a87c62f2d28db0b", size = 542540, upload-time = "2026-08-19T15:10:19.525Z" },
 ]
 
 [[package]]
@@ -97,15 +111,19 @@ wheels = [
 
 [[package]]
 name = "pycairo"
-version = "1.29.0"
+version = "1.29.2"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/22/d9/1728840a22a4ef8a8f479b9156aa2943cd98c3907accd3849fb0d5f82bfd/pycairo-1.29.0.tar.gz", hash = "sha256:f3f7fde97325cae80224c09f12564ef58d0d0f655da0e3b040f5807bd5bd3142", size = 665871, upload-time = "2025-11-11T19:13:01.584Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/bb/5e/19ab2572981a996ce96b853a189d2dcced40506b67d9555a7568457abcf2/pycairo-1.29.2.tar.gz", hash = "sha256:3e69fff74fe64f5ba2dfa31f67c6bdf26413342574047437d2ac520d35e9a489", size = 666308, upload-time = "2026-10-04T19:11:03.81Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/2d/fa/87eaeeb9d53344c769839d7b2854db7ff2cd596211e00dd1b702eeb1838f/pycairo-1.29.0-cp314-cp314-win32.whl", hash = "sha256:69e2a7968a3fbb839736257bae153f547bca787113cc8d21e9e08ca4526e0b6b", size = 767198, upload-time = "2025-11-11T19:12:42.336Z" },
-    { url = "https://files.pythonhosted.org/packages/3c/90/3564d0f64d0a00926ab863dc3c4a129b1065133128e96900772e1c4421f8/pycairo-1.29.0-cp314-cp314-win_amd64.whl", hash = "sha256:e91243437a21cc4c67c401eff4433eadc45745275fa3ade1a0d877e50ffb90da", size = 871579, upload-time = "2025-11-11T19:12:48.982Z" },
-    { url = "https://files.pythonhosted.org/packages/5e/91/93632b6ba12ad69c61991e3208bde88486fdfc152be8cfdd13444e9bc650/pycairo-1.29.0-cp314-cp314-win_arm64.whl", hash = "sha256:b72200ea0e5f73ae4c788cd2028a750062221385eb0e6d8f1ecc714d0b4fdf82", size = 719537, upload-time = "2025-11-11T19:12:55.016Z" },
-    { url = "https://files.pythonhosted.org/packages/93/23/37053c039f8d3b9b5017af9bc64d27b680c48a898d48b72e6d6583cf0155/pycairo-1.29.0-cp314-cp314t-win_amd64.whl", hash = "sha256:5e45fce6185f553e79e4ef1722b8e98e6cde9900dbc48cb2637a9ccba86f627a", size = 874015, upload-time = "2025-11-11T19:12:28.47Z" },
-    { url = "https://files.pythonhosted.org/packages/d7/54/123f6239685f5f3f2edc123f1e38d2eefacebee18cf3c532d2f4bd51d0ef/pycairo-1.29.0-cp314-cp314t-win_arm64.whl", hash = "sha256:caba0837a4b40d47c8dfb0f24cccc12c7831e3dd450837f2a356c75f21ce5a15", size = 721404, upload-time = "2025-11-11T19:12:36.919Z" },
+    { url = "https://files.pythonhosted.org/packages/53/d4/48e4b327563beae41c5eabea70c4b8b9aec790361dec02c338d4e8e2ac21/pycairo-1.29.2-cp314-cp314-win32.whl", hash = "sha256:98360270afaa909bcc1769f299160123322da29d2a7310763b0ddc16e624d5c6", size = 767785, upload-time = "2026-10-04T19:11:43.794Z" },
+    { url = "https://files.pythonhosted.org/packages/42/bf/9d9eb2d0780440b1b5fe916e6a3abfa11e05f750b0ad643987cb9c0761d2/pycairo-1.29.2-cp314-cp314-win_amd64.whl", hash = "sha256:786373ba1bd78fbdec02cb1c99254eef12438bf942dd13534fe61b948becb527", size = 872750, upload-time = "2026-10-04T19:11:45.545Z" },
+    { url = "https://files.pythonhosted.org/packages/78/36/f785d5a974809f36247ee56d15ca135433d1bf3c2adf1eb8fd66150b6a5e/pycairo-1.29.2-cp314-cp314-win_arm64.whl", hash = "sha256:9bb09bca782b5e21a4beb698075b5504f234af0597920f0c0439979226a76182", size = 720245, upload-time = "2026-10-04T19:11:47.69Z" },
+    { url = "https://files.pythonhosted.org/packages/4f/74/c751bab17d770a3092d79b111281a7dca420b1490dd6e6f5408faab884ee/pycairo-1.29.2-cp314-cp314t-win_amd64.whl", hash = "sha256:bc9e26b7e9577d3655509766275653aa945f101fb28c197496facf8c9ba90321", size = 875205, upload-time = "2026-10-04T19:11:40.692Z" },
+    { url = "https://files.pythonhosted.org/packages/b8/61/2d6f8361ba8497bb23bbb8ec8b91959b2e71366a3af2830c5a758663eabd/pycairo-1.29.2-cp314-cp314t-win_arm64.whl", hash = "sha256:29e3389c0b6d3dafda1b2360a8938790c2c7b6971b78e109a565c1cb91f8ae9a", size = 721982, upload-time = "2026-10-04T19:11:42.146Z" },
+    { url = "https://files.pythonhosted.org/packages/92/05/427798a6722ee60ff9e1dbde0d6b67d56bdf4362c48c3239cf790804359e/pycairo-1.29.2-cp315-cp315-win_amd64.whl", hash = "sha256:c5dfa99afdde95b82325f240d144008a6b5be99405e74070540a1b7a857eb2a7", size = 872704, upload-time = "2026-10-04T19:11:53.589Z" },
+    { url = "https://files.pythonhosted.org/packages/5e/58/708d622971b11215d113a27b8a3ca21815383ff2441eac8922b03a22aa0a/pycairo-1.29.2-cp315-cp315-win_arm64.whl", hash = "sha256:6b0410280b82bf60a84185392f720c099d71524dd7983f93d9abe18c8b2cd3a6", size = 720251, upload-time = "2026-10-04T19:11:55.606Z" },
+    { url = "https://files.pythonhosted.org/packages/a9/db/fb0d756cc1966a3e5f3c903f14136690d567983a571d1864e6e7ca1f8c21/pycairo-1.29.2-cp315-cp315t-win_amd64.whl", hash = "sha256:88cbf5632be0b9255822b457d3bfe4f9eb0bc24e5520f54b6c4334e4f5b0f5aa", size = 875248, upload-time = "2026-10-04T19:11:50.36Z" },
+    { url = "https://files.pythonhosted.org/packages/0f/ec/3c2700abac22e3ea70c67cb27caa6c2960372ebb7361127328471a39fa7f/pycairo-1.29.2-cp315-cp315t-win_arm64.whl", hash = "sha256:0e49de5b93fc1e76e670f368b9bd0ffc881c72f506e4293c4b4d79f52cbe4c47", size = 721983, upload-time = "2026-10-04T19:11:51.895Z" },
 ]
 
 [[package]]
@@ -116,6 +134,36 @@ dependencies = [
     { name = "pycairo" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/2b/58/d34e67a79631177e3c08e7d02b5165147f590171f2cae6769502af5f7f7e/pygobject-3.50.0.tar.gz", hash = "sha256:4500ad3dbf331773d8dedf7212544c999a76fc96b63a91b3dcac1e5925a1d103", size = 1080367, upload-time = "2024-09-12T12:05:22.579Z" }
+
+[[package]]
+name = "python-dateutil"
+version = "2.9.0.post0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "six" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/66/c0/0c8b6ad9f17a802ee498c46e004a0eb49bc148f2fd230864601a86dcf6db/python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3", size = 342432, upload-time = "2024-03-01T18:36:20.211Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427", size = 229892, upload-time = "2024-03-01T18:36:18.57Z" },
+]
+
+[[package]]
+name = "six"
+version = "1.17.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031, upload-time = "2024-12-04T17:35:28.174Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050, upload-time = "2024-12-04T17:35:26.475Z" },
+]
+
+[[package]]
+name = "tzdata"
+version = "2026.5"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d9/68/f1b440335057bfce71b6e50a9d09445aa2ecbd08359a337976627b8409e7/tzdata-2026.5.tar.gz", hash = "sha256:8cc73c0a0bfca7dbfa59235d60b2eff82231dee33f53d206db1acd9173cfc0a7", size = 200404, upload-time = "2026-10-03T09:23:14.143Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/94/21/1e5995a1c920cce14e4bffae20c665ec10e7ed03ab25e006cd741092b718/tzdata-2026.5-py2.py3-none-any.whl", hash = "sha256:b683bd1b6659ddcd810ff02ad09ba821d4bf1065072805063eb35c49617905ac", size = 347996, upload-time = "2026-10-03T09:23:12.535Z" },
+]
 
 [[package]]
 name = "win32-setctime"
