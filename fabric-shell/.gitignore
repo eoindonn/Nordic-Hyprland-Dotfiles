@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+ignore_me_libcvc_build/
